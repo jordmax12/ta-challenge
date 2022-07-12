@@ -6,7 +6,7 @@ module.exports.handler = async (event) => {
   console.log(JSON.stringify(event, null, 4));
   if (!validateRequest(['email', 'password'], event.queryStringParameters)) {
     return returnHelper(400, {
-      error: 'email and password are required as a query string parameter for this request.',
+      error: '`email` and `password` are required as a query string parameter for this request.',
     });
   }
 
@@ -14,14 +14,15 @@ module.exports.handler = async (event) => {
     queryStringParameters: { email, password },
   } = event;
 
-  const test = await getOTP(email);
-  console.log({
-    test,
-  });
+  const fetchOtp = await getOTP(email);
 
-  const { password: currentOtpPassword } = test;
+  if (!fetchOtp) {
+    return returnHelper(404, {
+      error: 'Email seemingly invalid.',
+    });
+  }
 
-  if (currentOtpPassword !== password) {
+  if (fetchOtp.otpPassword !== password.toString()) {
     return returnHelper(404, {
       error: 'Password incorrect.',
     });

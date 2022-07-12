@@ -50,7 +50,7 @@ const createOTPPassword = () =>
  * @returns Item if exists
  */
 const getOTP = async (id) => {
-  const result = client
+  const result = await client
     .get({
       TableName: OTP_TABLE,
       Key: {
@@ -58,6 +58,7 @@ const getOTP = async (id) => {
       },
     })
     .promise();
+
   return result?.Item || null;
 };
 /**

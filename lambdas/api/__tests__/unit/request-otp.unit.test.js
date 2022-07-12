@@ -1,5 +1,4 @@
 const mockPut = jest.fn();
-const mockGet = jest.fn();
 
 const { handler } = require('../../request-otp');
 
@@ -9,7 +8,6 @@ jest.mock('aws-sdk', () => ({
   DynamoDB: {
     DocumentClient: jest.fn(() => ({
       put: mockPut,
-      get: mockGet,
     })),
   },
 }));
