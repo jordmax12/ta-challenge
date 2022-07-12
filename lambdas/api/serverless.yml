@@ -1,0 +1,18 @@
+service: api
+app: thoughtful-automation
+org: jordmax12
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  region: us-east-2
+  runtime: nodejs16.x
+  architecture: arm64
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - httpApi:
+          path: /
+          method: get
