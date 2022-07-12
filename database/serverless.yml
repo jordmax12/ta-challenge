@@ -32,6 +32,8 @@ resources:
         TimeToLiveSpecification:
           AttributeName: expire
           Enabled: true
+        StreamSpecification:
+          StreamViewType: NEW_IMAGE
         Tags:
           - Key: APP
             Value: ${self:app}
@@ -42,3 +44,5 @@ resources:
       Value: !Ref OTP
     OTPArn:
       Value: !GetAtt OTP.Arn
+    OTPStreamArn:
+      Value: !GetAtt OTP.StreamArn

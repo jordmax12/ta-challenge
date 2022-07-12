@@ -44,3 +44,13 @@ functions:
       - httpApi:
           path: /verify
           method: get
+  otpListener:
+    handler: otp-listener.handler
+    timeout: 900
+    events:
+      - stream:
+          type: dynamodb
+          arn: ${cf:database-${sls:stage}.OTPStreamArn}
+          startingPosition: LATEST
+          batchSize: 450
+          enabled: true
