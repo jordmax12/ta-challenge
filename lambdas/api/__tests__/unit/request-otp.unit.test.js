@@ -40,7 +40,7 @@ describe('testing the OTP helper file', () => {
 
     expect(result).toEqual({
       statusCode: 400,
-      body: JSON.stringify({ error: 'email is required as a query string parameter' }),
+      body: JSON.stringify({ error: 'email is required as a query string parameter for this request.' }),
       headers: {
         'Content-Type': 'application/json',
       },
