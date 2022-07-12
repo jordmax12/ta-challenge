@@ -4,7 +4,7 @@ const { DYNAMO_DB_ENDPOINT, OTP_TABLE } = process.env;
 
 const client = new AWS.DynamoDB.DocumentClient({
   endpoint: DYNAMO_DB_ENDPOINT,
-  region: 'us-east-1',
+  region: 'us-east-2',
   apiVersion: '2012-08-10',
   sslEnabled: false,
 });
