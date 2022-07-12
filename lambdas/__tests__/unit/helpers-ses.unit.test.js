@@ -1,5 +1,3 @@
-process.env.REGION = 'us-east-2';
-
 const mockSendEmail = jest.fn(() => ({
   promise: () => true,
 }));
