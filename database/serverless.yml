@@ -1,0 +1,44 @@
+service: database
+app: thoughtful-automation
+org: jordmax12
+frameworkVersion: '^3'
+configValidationMode: error
+
+provider:
+  name: aws
+  region: us-east-2
+  tags:
+    APP: ${self:app}
+    SERVICE: ${self:service}
+  deploymentBucket:
+    blockPublicAccess: true
+    tags:
+      APP: ${self:app}
+      SERVICE: ${self:service}
+
+resources:
+  Resources:
+    OTP:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+        TableName: ${self:app}-OTP
+        TimeToLiveSpecification:
+          AttributeName: expire
+          Enabled: true
+        Tags:
+          - Key: APP
+            Value: ${self:app}
+          - Key: SERVICE
+            Value: ${self:service}
+  Outputs:
+    OTP:
+      Value: !Ref OTP
+    OTPArn:
+      Value: !GetAtt OTP.Arn
