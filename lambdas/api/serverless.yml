@@ -10,6 +10,7 @@ provider:
   architecture: arm64
   environment:
     STAGE: ${sls:stage}
+    REGION: ${self:provider.region}
     OTP_TABLE: ${cf:database-${sls:stage}.OTP}
   iam:
     role:
@@ -24,6 +25,11 @@ provider:
           Resource:
             - '${cf:database-${sls:stage}.OTPArn}'
             - '${cf:database-${sls:stage}.OTPArn}/*'
+        - Effect: Allow
+          Action:
+              - "ses:SendEmail"
+              - "ses:SendRawEmail"
+          Resource: "*"
 
 functions:
   requestOneTimePassword:
@@ -46,7 +52,7 @@ functions:
           method: get
   otpListener:
     handler: otp-listener.handler
-    timeout: 900
+    timeout: 60
     events:
       - stream:
           type: dynamodb

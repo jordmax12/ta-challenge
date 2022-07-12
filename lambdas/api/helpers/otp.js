@@ -1,10 +1,10 @@
 const AWS = require('aws-sdk');
 
-const { DYNAMO_DB_ENDPOINT, OTP_TABLE } = process.env;
+const { DYNAMO_DB_ENDPOINT, OTP_TABLE, REGION } = process.env;
 
 const client = new AWS.DynamoDB.DocumentClient({
   endpoint: DYNAMO_DB_ENDPOINT,
-  region: 'us-east-2',
+  region: REGION,
   apiVersion: '2012-08-10',
   sslEnabled: false,
 });
