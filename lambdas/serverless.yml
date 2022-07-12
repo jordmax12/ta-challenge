@@ -60,3 +60,9 @@ functions:
           startingPosition: LATEST
           batchSize: 450
           enabled: true
+          filterPatterns:
+            - eventName: [MODIFY]
+              dynamodb:
+                 NewImage:
+                   id:
+                     S: [ { 'exists': true } ]

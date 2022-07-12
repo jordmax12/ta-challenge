@@ -1,4 +1,5 @@
 const mockGet = jest.fn();
+const mockDelete = jest.fn();
 
 const { handler } = require('../../verify-otp');
 
@@ -9,6 +10,7 @@ jest.mock('aws-sdk', () => ({
   DynamoDB: {
     DocumentClient: jest.fn(() => ({
       get: mockGet,
+      delete: mockDelete,
     })),
   },
 }));
@@ -30,6 +32,11 @@ describe('testing the OTP helper file', () => {
           },
         }),
     });
+
+    mockDelete.mockReturnValue({
+      promise: () => true,
+    });
+
     const result = await handler({
       queryStringParameters: {
         email: mockEmail,
