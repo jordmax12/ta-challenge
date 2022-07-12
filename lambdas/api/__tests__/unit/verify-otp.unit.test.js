@@ -20,14 +20,15 @@ beforeAll(() => {
 describe('testing the OTP helper file', () => {
   test('success handler call - 200 status code', async () => {
     mockGet.mockReturnValueOnce({
-      promise: () => ({
-        Item: {
-          id: mockEmail,
-          password: mockPassword,
-          expire: 1000,
-          expire_at: new Date().toISOString(),
-        },
-      }),
+      promise: () =>
+        Promise.resolve({
+          Item: {
+            id: mockEmail,
+            otpPassword: mockPassword,
+            expire: 1000,
+            expire_at: new Date().toISOString(),
+          },
+        }),
     });
     const result = await handler({
       queryStringParameters: {
@@ -49,7 +50,7 @@ describe('testing the OTP helper file', () => {
       promise: () => ({
         Item: {
           id: mockEmail,
-          password: '4321',
+          otpPassword: '4321',
           expire: 1000,
           expire_at: new Date().toISOString(),
         },
@@ -70,6 +71,25 @@ describe('testing the OTP helper file', () => {
       },
     });
   });
+  test('invalid email - 404 status code', async () => {
+    mockGet.mockReturnValueOnce({
+      promise: () => ({}),
+    });
+    const result = await handler({
+      queryStringParameters: {
+        email: mockEmail,
+        password: mockPassword,
+      },
+    });
+
+    expect(result).toEqual({
+      statusCode: 404,
+      body: JSON.stringify({ error: 'Email seemingly invalid.' }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+  });
   test('error handler call - 400 status code', async () => {
     const result = await handler({
       queryStringParameters: {
@@ -79,7 +99,9 @@ describe('testing the OTP helper file', () => {
 
     expect(result).toEqual({
       statusCode: 400,
-      body: JSON.stringify({ error: 'email and password are required as a query string parameter for this request.' }),
+      body: JSON.stringify({
+        error: '`email` and `password` are required as a query string parameter for this request.',
+      }),
       headers: {
         'Content-Type': 'application/json',
       },
