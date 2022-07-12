@@ -8,6 +8,22 @@ provider:
   region: us-east-2
   runtime: nodejs16.x
   architecture: arm64
+  environment:
+    STAGE: ${sls:stage}
+    OTP_TABLE: ${cf:database-${sls:stage}.OTP}
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:PutItem
+            - dynamodb:GetItem
+            - dynamodb:Query
+            - dynamodb:DeleteItem
+            - dynamodb:Scan
+          Resource:
+            - '${cf:database-${sls:stage}.OTPArn}'
+            - '${cf:database-${sls:stage}.OTPArn}/*'
 
 functions:
   hello:
