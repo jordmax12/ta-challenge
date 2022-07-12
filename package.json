@@ -1,0 +1,54 @@
+{
+  "name": "ta-challenge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lambdas/api/handler.js",
+  "engines": {
+    "npm": "please-use-yarn",
+    "yarn": ">=1.22",
+    "node": "14"
+  },
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "./*"
+    ]
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "lint:commit": "eslint --ignore-pattern '!./.jest/uuid-resolver.js !./.jest/program-webhook.js !./lambdas/gcms-program-webhook/.jest/envs/program-webhook.js' $(git diff HEAD --name-only --diff-filter=ACMRTUXB | grep -E '.js$' | xargs)",
+    "test": "jest unit --detectOpenHandles"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jordmax12/ta-challenge.git"
+  },
+  "dependencies": {
+    "aws-sdk": "2.1055.0",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@shelf/jest-dynamodb": "^1.8.1",
+    "dotenv": "^16.0.1",
+    "eslint": "^8.18.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-node": "^4.1.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest": "^26.5.3",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^28.1.1",
+    "jest-environment-node": "^28.1.1",
+    "lru-cache": "^7.10.2",
+    "prettier": "^2.7.1",
+    "serverless": "^3.17.0"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jordmax12/ta-challenge/issues"
+  },
+  "homepage": "https://github.com/jordmax12/ta-challenge#readme"
+}
