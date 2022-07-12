@@ -1,9 +1,10 @@
 const mockPut = jest.fn();
 const mockGet = jest.fn();
+const mockDelete = jest.fn();
 
 const { OTP_TABLE } = process.env;
 
-const { createOTPItem, createOTPPassword, getOTP, updateOTP } = require('../../helpers/otp');
+const { createOTPItem, createOTPPassword, deleteOTP, getOTP, updateOTP } = require('../../helpers/otp');
 
 const mockEmail = 'unit@test.com';
 const mockOtpPassword = 1234;
@@ -14,6 +15,7 @@ jest.mock('aws-sdk', () => ({
     DocumentClient: jest.fn(() => ({
       put: mockPut,
       get: mockGet,
+      delete: mockDelete,
     })),
   },
 }));
@@ -69,6 +71,20 @@ describe('testing the OTP helper file', () => {
         Key: {
           id: mockEmail,
         },
+      })
+    );
+  });
+  test('testing deleteOTP', async () => {
+    mockDelete.mockReturnValue({
+      promise: () => true,
+    });
+
+    const result = await deleteOTP(mockEmail);
+    expect(result).toBeTruthy();
+    expect(mockDelete.mock.calls[0][0]).toEqual(
+      expect.objectContaining({
+        TableName: OTP_TABLE,
+        Key: { id: mockEmail },
       })
     );
   });

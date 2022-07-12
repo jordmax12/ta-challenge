@@ -45,6 +45,18 @@ const createOTPItem = (id, otpPassword) => {
 const createOTPPassword = () =>
   [...Array(OTP_NUM_DIGITS).keys()].reduce((acc) => acc + OTP_ALLOWED_DIGIT_VALUES[Math.floor(Math.random() * 10)], '');
 /**
+ * Helper function to delete an OTP from DDB.
+ * @param {String} id email of the user.
+ * @returns result of document client delete function.
+ */
+const deleteOTP = async (id) =>
+  client
+    .delete({
+      TableName: OTP_TABLE,
+      Key: { id },
+    })
+    .promise();
+/**
  * Helper function to retrieve a OTP from DDB.
  * @param {String} id email of the user.
  * @returns Item if exists
@@ -77,6 +89,7 @@ const updateOTP = async (record) =>
 module.exports = {
   createOTPItem,
   createOTPPassword,
+  deleteOTP,
   getOTP,
   updateOTP,
 };

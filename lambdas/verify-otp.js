@@ -1,4 +1,4 @@
-const { getOTP } = require('./helpers/otp');
+const { deleteOTP, getOTP } = require('./helpers/otp');
 const { validateRequest } = require('./helpers/validator');
 const { returnHelper } = require('./helpers/response');
 
@@ -28,6 +28,7 @@ module.exports.handler = async (event) => {
     });
   }
 
+  await deleteOTP(email);
   // NOTE; in real world scenario we would have some auth provider that would send back some access tokens
   // giving the user ability to make api calls and thus actually login. But figured this was out of scope
   // for this challenge.
