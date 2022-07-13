@@ -19,7 +19,7 @@
 * [Functional Programming Paradigm](https://en.wikipedia.org/wiki/Functional_programming#:~:text=In%20computer%20science%2C%20functional%20programming,by%20applying%20and%20composing%20functions)
 
 ## Infrastructure
-![LucidChart Diagram](assets/images/lucid.png?raw=true "LucidChart Diagram")
+![LucidChart Diagram](assets/images/lucid-final.png?raw=true "LucidChart Diagram")
 
 ## What I would do with more time
 * Hook in an auth provider to really authenticate and return back an actual access/secret token to make API more secure.
