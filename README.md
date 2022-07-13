@@ -3,7 +3,7 @@
 ![LucidChart Diagram](assets/images/Thoughtful%20Automation.png?raw=true "LucidChart Diagram")
 ### High Level Overview
    * Infrastructure
-        - ![Serverless Framework](https://serverless.com)
+        - [Serverless Framework](https://serverless.com)
         - [Lambda](https://aws.amazon.com/lambda)
         - [DynamoDB](https://aws.amazon.com/dynamodb/)
         - [DynamoDB Stream](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/streamsmain.html)
