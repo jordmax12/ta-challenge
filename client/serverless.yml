@@ -20,6 +20,7 @@ custom:
   scripts:
     hooks:
       before:deploy:deploy: (cd ./app && yarn run build)
+      after:deploy:deploy: aws cloudfront create-invalidation --distribution-id ${param:distributionId} --paths "/*" | > /dev/null
 
 resources:
     Resources:
@@ -57,11 +58,10 @@ resources:
                   OriginProtocolPolicy: https-only
             Aliases:
               - thoughtful.jordanmax.io
-              - www.thoughtful.jordanmax.io
-            # ViewerCertificate:
-            #   AcmCertificateArn: ${param:certificateArn}
-            #   MinimumProtocolVersion: TLSv1.2_2019
-            #   SslSupportMethod: sni-only
+            ViewerCertificate:
+              AcmCertificateArn: ${param:certificateArn}
+              MinimumProtocolVersion: TLSv1.2_2019
+              SslSupportMethod: sni-only
             Enabled: 'true'
             DefaultRootObject: index.html
             CustomErrorResponses:

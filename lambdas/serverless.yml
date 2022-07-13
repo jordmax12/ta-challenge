@@ -63,8 +63,7 @@ functions:
           batchSize: 450
           enabled: true
           filterPatterns:
-            - eventName: [MODIFY]
-              dynamodb:
+            - dynamodb:
                  NewImage:
                    id:
                      S: [ { 'exists': true } ]

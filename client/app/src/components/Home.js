@@ -4,15 +4,8 @@ import LoginComponent from './Login';
 import VerifyOtpComponent from './Otp';
 import Dashboard from './Dashboard';
 import { requestOtp, verifyOtp } from '../helpers/api';
+import LOGIN_FLOWS from '../helpers/login-flows';
 
-const LOGIN_FLOWS = {
-  'LOGIN': 'LOGIN',
-  'REQUEST_OTP': 'REQUEST_OTP',
-  'VERIFY_OTP': 'VERIFY_OTP',
-  'VERIFIED_OTP': 'VERIFIED_OTP',
-  'LOGGED_IN': 'LOGGED_IN',
-  'LOGGING_IN': 'LOGGING_IN',
-}
 const validateEmail = (email) => {
   return String(email)
     .toLowerCase()
@@ -77,11 +70,11 @@ function Home(props) {
   }
 
   if(loginState === LOGIN_FLOWS.LOGIN || loginState === LOGIN_FLOWS.REQUEST_OTP) {
-    return <LoginComponent isLoading={isLoading} setEmail={setEmail} continueLoginFlow={handleLoginContinue} disabled={determineContinueEligiblity(email, isLoading)} />;
+    return <LoginComponent isLoading={isLoading} setEmail={setEmail} continueLoginFlow={handleLoginContinue} disabled={isLoading || determineContinueEligiblity(email, isLoading)} />;
   } else if(loginState === LOGIN_FLOWS.VERIFY_OTP || loginState === LOGIN_FLOWS.LOGGING_IN) {
-    return <VerifyOtpComponent isLoading={isLoading} setOtp={setOtp} continueVerifyFlow={handleOtpContinue} disabled={determineVerifyEligiblity(otp, isLoading)} />;
+    return <VerifyOtpComponent isLoading={isLoading} setOtp={setOtp} continueVerifyFlow={handleOtpContinue} disabled={isLoading || determineVerifyEligiblity(otp, isLoading)} />;
   } else if(loginState === LOGIN_FLOWS.VERIFIED_OTP || loginState === LOGIN_FLOWS.LOGGED_IN) {
-    return <Dashboard />;
+    return <Dashboard setLoginState={setLoginState} />;
   }
   
 }

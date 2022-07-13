@@ -1,20 +1,25 @@
 import React, { useEffect, useState } from 'react';
+import { useCookies } from "react-cookie";
 import { 
     Box,
     Button
  } from '@mui/material'
 import { getPunkData, getRandomPunkData } from '../helpers/api';
+import LOGIN_FLOWS from '../helpers/login-flows';
 
 const DEFAULT_BEER_IMG = 'https://media.beerdrop.com/catalog/product/placeholder/default/default-3_1.jpg';
 
-function renderDashboard(isLoading, beers, updateRandom, random) {
+function renderDashboard(isLoading, beers, updateRandom, random, removeCookie, setLoginState) {
     const toggleFetchRandom = () => {
         updateRandom(!random);
     }
 
     return <div style={{ height: '100%', position: 'relative'}}>
         <h1 style={{ color: '#6495ED' }}> Beers! </h1>
-        <h3 style={{ color: 'darkgray' }}> By: Jordan Max </h3>
+        <Button disabled={isLoading} fullWidth onClick={() => { 
+            removeCookie('isLoggedIn');
+            setLoginState(LOGIN_FLOWS.LOGIN);
+        }}> Sign Out </Button>
         <div style={{ marginTop: '10px', height: 'auto', width: '100%', position: 'relative' }}>
             <Box
                 component="form"
@@ -56,6 +61,7 @@ function Dashboard(props) {
     const [isLoading, setLoading] = useState(true);
     const [beers, setBeers] = useState([]);
     const [random, setRandom] = useState(false);
+    const [, , removeCookie] = useCookies();
 
     const updateRandom = (random) => {
         setRandom(random);
@@ -89,7 +95,7 @@ function Dashboard(props) {
     }, [])
 
     return <div style={{ padding: '10px', width: '75%', maxWidth: '500px', marginLeft: 'auto', marginRight: 'auto', marginTop: '100px', paddingTop: '25px' }}>
-        {renderDashboard(isLoading, beers, updateRandom, random)}
+        {renderDashboard(isLoading, beers, updateRandom, random, removeCookie, props.setLoginState)}
     </div>
 }
 

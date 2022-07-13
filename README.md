@@ -1,6 +1,6 @@
 # Thoughtful Automation Challenge
 
-![LucidChart Diagram](assets/images/Thoughtful%20Automation.png?raw=true "LucidChart Diagram")
+![LucidChart Diagram](assets/images/lucid.png?raw=true "LucidChart Diagram")
 ## High Level Overview
 
 * [Serverless Framework](https://serverless.com)
@@ -17,7 +17,8 @@
 * [Functional Programming Paradigm](https://en.wikipedia.org/wiki/Functional_programming#:~:text=In%20computer%20science%2C%20functional%20programming,by%20applying%20and%20composing%20functions)
 
 ## Important Information
-* [url](http://client-dev-bucket.s3-website.us-east-2.amazonaws.com/)
+* [S3 Link](http://client-dev-bucket.s3-website.us-east-2.amazonaws.com/)
+* [CDN Link](http://thoughtful.jordanmax.io)
 
 ## What I would do with more time
 * Hook in an auth provider to really authenticate and return back an actual access/secret token to make API more secure.
@@ -25,3 +26,5 @@
 * Would split up lambdas into their own individual microservices, but to save time I put them all together.
 * Integration tests
 * OpenAPI/Swagger documentation
+
+![Kanban Board](assets/images/kanban.png?raw=true "Kanban Board")
