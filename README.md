@@ -18,7 +18,7 @@
 ## Infrastructure
 ![LucidChart Diagram](assets/images/lucid.png?raw=true "LucidChart Diagram")
 
-## Important Information
+## Links
 * [thoughtful.jordanmax.io](http://thoughtful.jordanmax.io)
 * [S3 Link](http://client-dev-bucket.s3-website.us-east-2.amazonaws.com/)
 
