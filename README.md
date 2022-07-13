@@ -1,8 +1,15 @@
 # Thoughtful Automation Challenge
 
-High Level Overview:
+![LucidChart Diagram](assets/images/Thoughtful%20Automation.png?raw=true "LucidChart Diagram")
+### High Level Overview: 
     - Infrastructure
-    ![LucidChart Diagram](assets/images/Thoughtful%20Automation.png?raw=true "LucidChart Diagram")
+        - Serverless Framework
+        - Lambda
+        - DynamoDB
+        - DynamoDB Stream
+        - Simple Email Service
+        - S3
+        - Cloudfront
     - Monorepo design pattern
         - using yarn workspaces to share modules
     - Tried to follow the functional programming paradigm as much as possible.
