@@ -25,8 +25,7 @@
     "url": "git+https://github.com/jordmax12/ta-challenge.git"
   },
   "dependencies": {
-    "aws-sdk": "2.1055.0",
-    "uuid": "^8.3.2"
+    "aws-sdk": "2.1055.0"
   },
   "devDependencies": {
     "@shelf/jest-dynamodb": "^1.8.1",
@@ -43,7 +42,9 @@
     "jest-environment-node": "^28.1.1",
     "lru-cache": "^7.10.2",
     "prettier": "^2.7.1",
-    "serverless": "^3.17.0"
+    "serverless": "^3.17.0",
+    "serverless-s3-sync": "^3.0.0",
+    "serverless-plugin-scripts": "^1.0.2"
   },
   "author": "",
   "license": "ISC",

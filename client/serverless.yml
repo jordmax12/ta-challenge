@@ -1,0 +1,46 @@
+service: client
+app: thoughtful-automation
+org: jordmax12
+frameworkVersion: '^3'
+configValidationMode: error
+
+provider:
+  name: aws
+  region: us-east-2
+
+plugins:
+  - serverless-s3-sync
+  - serverless-plugin-scripts
+
+custom:
+  bucketName: ${self:service}-${sls:stage}-bucket
+  s3Sync:
+    - bucketName: ${self:custom.bucketName}
+      localDir: app/build
+  scripts:
+    hooks:
+      before:deploy:deploy: (cd ./app && yarn run build)
+
+resources:
+    Resources:
+      ReactAppBucket:
+        Type: AWS::S3::Bucket
+        Properties:
+          BucketName: ${self:custom.bucketName}
+          AccessControl: PublicRead
+          WebsiteConfiguration:
+            IndexDocument: index.html
+            ErrorDocument: index.html
+      S3AccessPolicy:
+        Type: AWS::S3::BucketPolicy
+        Properties:
+          Bucket:
+            Ref: ReactAppBucket
+          PolicyDocument:
+            Statement:
+              - Sid: PublicReadGetObject
+                Effect: Allow
+                Principal: '*'
+                Action:
+                    - s3:GetObject
+                Resource: arn:aws:s3:::${self:custom.bucketName}/*
