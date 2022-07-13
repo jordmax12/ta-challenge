@@ -1,7 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useCookies } from "react-cookie";
 import LoginComponent from './Login';
 import VerifyOtpComponent from './Otp';
+import Dashboard from './Dashboard';
 import { requestOtp, verifyOtp } from '../helpers/api';
 
 const LOGIN_FLOWS = {
@@ -25,11 +26,6 @@ const determineContinueEligiblity = (email) => {
 }
 
 const determineVerifyEligiblity = (otp) => otp.length !== 4
-
-/* eslint-disable react/react-in-jsx-scope */
-function Dashboard(props) {
-    return <h1>Welcome back!</h1>;
-}
 
 function Home(props) {
   const [, setCookie] = useCookies();
@@ -84,7 +80,7 @@ function Home(props) {
     return <LoginComponent isLoading={isLoading} setEmail={setEmail} continueLoginFlow={handleLoginContinue} disabled={determineContinueEligiblity(email, isLoading)} />;
   } else if(loginState === LOGIN_FLOWS.VERIFY_OTP || loginState === LOGIN_FLOWS.LOGGING_IN) {
     return <VerifyOtpComponent isLoading={isLoading} setOtp={setOtp} continueVerifyFlow={handleOtpContinue} disabled={determineVerifyEligiblity(otp, isLoading)} />;
-  } else if(loginState === LOGIN_FLOWS.VERIFIED_OTP) {
+  } else if(loginState === LOGIN_FLOWS.VERIFIED_OTP || loginState === LOGIN_FLOWS.LOGGED_IN) {
     return <Dashboard />;
   }
   
