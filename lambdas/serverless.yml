@@ -40,12 +40,6 @@ functions:
       - httpApi:
           path: /
           method: get
-  resendOneTimePassword:
-    handler: request-otp.handler
-    events:
-      - httpApi:
-          path: /resend
-          method: get
   verifyOneTimePassword:
     handler: verify-otp.handler
     events:
