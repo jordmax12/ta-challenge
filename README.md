@@ -19,8 +19,8 @@
 ![LucidChart Diagram](assets/images/lucid.png?raw=true "LucidChart Diagram")
 
 ## Important Information
+* [thoughtful.jordanmax.io](http://thoughtful.jordanmax.io)
 * [S3 Link](http://client-dev-bucket.s3-website.us-east-2.amazonaws.com/)
-* [CDN Link](http://thoughtful.jordanmax.io)
 
 ## What I would do with more time
 * Hook in an auth provider to really authenticate and return back an actual access/secret token to make API more secure.
