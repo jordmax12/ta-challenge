@@ -1,6 +1,6 @@
 # Thoughtful Automation Challenge
 
-### A wonderful demonstration of serverless based microservice and event driven architecture.
+### A wonderful demonstration of serverless based microservices, event driven architecture, and a simple react application.
 ## High Level Overview
 * [Serverless Framework](https://serverless.com)
 * [Lambda](https://aws.amazon.com/lambda)
