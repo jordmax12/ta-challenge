@@ -18,4 +18,4 @@ const verifyOtp = async (email, password) => {
     })
 }
 
-export { requestOtp, verifyOtp }
+export { requestOtp, verifyOtp };
