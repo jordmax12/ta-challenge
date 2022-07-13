@@ -1,6 +1,9 @@
 # Thoughtful Automation Challenge
 
 ### A wonderful demonstration of serverless based microservices, event driven architecture, and a simple react application.
+## Links
+* [thoughtful.jordanmax.io](http://thoughtful.jordanmax.io)
+* [S3 Link](http://client-dev-bucket.s3-website.us-east-2.amazonaws.com/)
 ## High Level Overview
 * [Serverless Framework](https://serverless.com)
 * [Lambda](https://aws.amazon.com/lambda)
@@ -18,16 +21,11 @@
 ## Infrastructure
 ![LucidChart Diagram](assets/images/lucid.png?raw=true "LucidChart Diagram")
 
-## Links
-* [thoughtful.jordanmax.io](http://thoughtful.jordanmax.io)
-* [S3 Link](http://client-dev-bucket.s3-website.us-east-2.amazonaws.com/)
-
 ## What I would do with more time
 * Hook in an auth provider to really authenticate and return back an actual access/secret token to make API more secure.
 * CICD implementation (github actions or something alike to actually deploy these services).
 * Would split up lambdas into their own individual microservices, but to save time I put them all together.
 * Integration tests
 * OpenAPI/Swagger documentation
-
 ## Kanban Board
 ![Kanban Board](assets/images/kanban.png?raw=true "Kanban Board")
