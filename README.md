@@ -3,13 +3,15 @@
 ![LucidChart Diagram](assets/images/Thoughtful%20Automation.png?raw=true "LucidChart Diagram")
 ### High Level Overview: 
     - Infrastructure
-        - Serverless Framework
-        - Lambda
-        - DynamoDB
-        - DynamoDB Stream
-        - Simple Email Service
-        - S3
-        - Cloudfront
+        - [Serverless Framework](https://serverless.com)
+        - [Lambda](https://aws.amazon.com/lambda)
+        - [DynamoDB](https://aws.amazon.com/dynamodb/)
+        - [DynamoDB Stream](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/streamsmain.html)
+        - [Simple Email Service](https://aws.amazon.com/ses/)
+        - [S3](https://aws.amazon.com/s3/)
+        - [Cloudfront](https://aws.amazon.com/cloudfront/)
+        - [React](https://reactjs.org/)
+        - [Material UI](https://mui.com/)
     - Monorepo design pattern
         - using yarn workspaces to share modules
     - Tried to follow the functional programming paradigm as much as possible.
