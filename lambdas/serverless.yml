@@ -8,6 +8,8 @@ provider:
   region: us-east-2
   runtime: nodejs16.x
   architecture: arm64
+  httpApi:
+    cors: true
   environment:
     STAGE: ${sls:stage}
     REGION: ${self:provider.region}
